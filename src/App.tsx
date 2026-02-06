@@ -65,7 +65,7 @@ function App() {
   return (
     <div className="flex h-screen w-full overflow-hidden font-sans"
          style={{ 
-           background: 'linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%)',
+           backgroundColor: 'var(--ios-secondary-background)',
            color: 'var(--ios-label)' 
          }}>
         {/* Sidebar container */}
@@ -73,7 +73,7 @@ function App() {
              "absolute z-20 h-full w-full sm:static sm:w-80 transition-all duration-300 transform no-print",
              showSidebar ? "translate-x-0" : "-translate-x-full sm:w-0 sm:overflow-hidden"
         )}
-        style={{ borderRight: showSidebar ? '0.5px solid rgba(0, 0, 0, 0.08)' : 'none' }}>
+        style={{ borderRight: showSidebar ? '0.5px solid var(--ios-separator)' : 'none' }}>
              <div className="w-full h-full sm:w-80">
                 <Sidebar currentId={selectedId} onSelect={handleSelect} />
              </div>
@@ -81,19 +81,18 @@ function App() {
 
         {/* Main Content with swipe gesture */}
         <div 
-          className="flex-1 flex flex-col h-full w-full relative print-content backdrop-blur-sm"
+          className="flex-1 flex flex-col h-full w-full relative print-content"
           style={{ 
-            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            backgroundColor: 'var(--ios-background)',
           }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
             {/* Header (iOS Navigation Bar) with Glass Effect */}
-            <div className="flex items-center justify-between px-4 py-2 z-10 no-print backdrop-blur-xl"
+            <div className="flex items-center justify-between px-4 py-2 z-10 no-print"
                  style={{ 
-                   borderBottom: '0.5px solid rgba(0, 0, 0, 0.08)',
-                   background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%)',
-                   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
+                   borderBottom: '0.5px solid var(--ios-separator)',
+                   backgroundColor: 'var(--ios-background)',
                  }}>
                 <div className="flex items-center gap-2 overflow-hidden flex-1">
                     <button 
@@ -161,7 +160,7 @@ function App() {
 
             {/* Content Area */}
             <div className="flex-1 overflow-y-auto relative print-content"
-                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}>
+                 style={{ backgroundColor: 'var(--ios-background)' }}>
                 {selectedId ? (
                     viewMode === 'edit' ? (
                        <Editor 
