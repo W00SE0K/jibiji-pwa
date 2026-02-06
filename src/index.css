@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./assets/fonts/Pretendard-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HanziPinyin';
+  src: url('./assets/fonts/Hanzi-Pinyin-Font.top.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-heading: 'Noto Sans SC', sans-serif;
+    --font-body: 'Noto Sans SC', sans-serif;
+  }
+  
+  html {
+    font-family: var(--font-body);
+    /* Improve CJK readability */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 
+     Global Line Height Strategy for Pinyin 
+     We need enough space above the line for the ruby text (rt) 
+     so lines with and without pinyin look evenly spaced.
+  */
+  p, div, span, li {
+      line-height: 2 !important; /* Relaxed leading to fit pinyin */
+  }
+
+  ruby {
+    ruby-position: over;
+    ruby-align: center; 
+  }
+
+  /* Hide ruby text when requested via class */
+  rt.hidden-pinyin {
+    opacity: 0;
+    /* Optional: visibility: hidden; if we want to remove from accessibility tree too, 
+       but keeping it in tree with opacity 0 is often better for "hide/reveal" 
+       without layout shift. */
+  }
+}
+
+:root {
+  /* iOS System Font Stack */
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Pretendard', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  /* iOS System Colors - Light Mode */
+  --ios-blue: #007AFF;
+  --ios-blue-hover: #0051D5;
+  --ios-gray: #8E8E93;
+  --ios-gray2: #AEAEB2;
+  --ios-gray3: #C7C7CC;
+  --ios-gray4: #D1D1D6;
+  --ios-gray5: #E5E5EA;
+  --ios-gray6: #F2F2F7;
+  --ios-red: #FF3B30;
+  --ios-label: #000000;
+  --ios-secondary-label: #3C3C43;
+  --ios-tertiary-label: #3C3C4399;
+  --ios-separator: #3C3C4349;
+  --ios-background: #FFFFFF;
+  --ios-secondary-background: #F2F2F7;
+  --ios-tertiary-background: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--ios-secondary-background);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* iOS System Colors - Dark Mode */
+    --ios-blue: #0A84FF;
+    --ios-blue-hover: #409CFF;
+    --ios-gray: #8E8E93;
+    --ios-gray2: #636366;
+    --ios-gray3: #48484A;
+    --ios-gray4: #3A3A3C;
+    --ios-gray5: #2C2C2E;
+    --ios-gray6: #1C1C1E;
+    --ios-red: #FF453A;
+    --ios-label: #FFFFFF;
+    --ios-secondary-label: #EBEBF5;
+    --ios-tertiary-label: #EBEBF599;
+    --ios-separator: #54545899;
+    --ios-background: #000000;
+    --ios-secondary-background: #1C1C1E;
+    --ios-tertiary-background: #2C2C2E;
+  }
+  
+  body {
+    background-color: var(--ios-secondary-background);
+  }
+}
+
+@media print {
+  @page {
+    margin: 2cm;
+    size: auto;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* Hide UI elements */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset layout for print */
+  .print-content {
+    position: static !important;
+    overflow: visible !important;
+    height: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
