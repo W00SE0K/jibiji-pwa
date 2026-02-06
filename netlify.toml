@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  environment = { NODE_VERSION = "20" }
+
+# JS 파일이 application/octet-stream 대신 application/javascript로 서빙되도록 (Netlify MIME 타입 에러 방지)
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+
+# SPA: 모든 경로를 index.html로 (나중에 라우팅 추가해도 404 방지)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
