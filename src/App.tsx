@@ -63,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden font-sans"
+    <div className="print-root flex h-screen w-full overflow-hidden font-sans"
          style={{ 
            backgroundColor: 'var(--ios-secondary-background)',
            color: 'var(--ios-label)' 
@@ -198,4 +198,3 @@ function App() {
 }
 
 export default App;
-

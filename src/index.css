@@ -116,10 +116,18 @@ body {
     margin: 2cm;
     size: auto;
   }
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    overflow: visible !important;
+  }
   
   body {
     background-color: white !important;
     color: black !important;
+    margin: 0 !important;
   }
 
   /* Hide UI elements */
@@ -127,11 +135,19 @@ body {
     display: none !important;
   }
 
+  .print-root {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
   /* Reset layout for print */
   .print-content {
     position: static !important;
     overflow: visible !important;
     height: auto !important;
+    max-height: none !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
