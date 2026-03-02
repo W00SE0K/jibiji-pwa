@@ -162,7 +162,15 @@ function App() {
             <div className="flex-1 overflow-y-auto relative print-content"
                  style={{ backgroundColor: 'var(--ios-background)' }}>
                 {selectedId ? (
-                    viewMode === 'edit' ? (
+                    <div className="flex-1 flex flex-col h-full w-full">
+                        {/* Print-only Title */}
+                        <div className="hidden print:block mb-6 pt-4">
+                            <h1 className="text-3xl font-bold border-b-2 pb-2" style={{ borderColor: 'var(--ios-separator)' }}>
+                                {currentCustomTitle || currentTitle}
+                            </h1>
+                        </div>
+                        
+                        {viewMode === 'edit' ? (
                        <Editor 
                          content={currentContent} 
                          onChange={(val) => updateContent(selectedId, val)} 
@@ -181,7 +189,8 @@ function App() {
                        >
                          <Preview content={currentContent} showPinyin={showPinyin} />
                        </div>
-                    )
+                    )}
+                 </div>
                 ) : (
                     <div 
                       className="flex flex-col items-center justify-center h-full no-print cursor-default"

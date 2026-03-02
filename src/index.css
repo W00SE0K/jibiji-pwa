@@ -113,43 +113,73 @@ body {
 
 @media print {
   @page {
-    margin: 2cm;
-    size: auto;
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  :root {
+    /* Force light colors for printing regardless of system theme */
+    --ios-label: #000000 !important;
+    --ios-background: #ffffff !important;
+    --ios-secondary-background: #ffffff !important;
+    --ios-tertiary-background: #ffffff !important;
+    --ios-separator: #eeeeee !important;
+    --ios-red: #ff0000 !important;
+    --ios-blue: #0000ff !important;
   }
 
   html,
   body,
   #root {
     height: auto !important;
+    min-height: 0 !important;
     overflow: visible !important;
+    background-color: white !important;
+    color: black !important;
+    display: block !important;
   }
   
   body {
-    background-color: white !important;
-    color: black !important;
     margin: 0 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
 
-  /* Hide UI elements */
+  /* Core resets for printing: disable flex/restricted heights that cause cut-offs */
+  .print-root, .print-content, 
+  .print-root div:not(.no-print), .print-content div:not(.no-print) {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+    flex: none !important;
+  }
+
+  /* Hide UI elements - placed after resets for higher precedence */
   .no-print {
     display: none !important;
   }
 
   .print-root {
-    display: block !important;
-    height: auto !important;
-    overflow: visible !important;
-    max-height: none !important;
+    width: 100% !important;
   }
 
-  /* Reset layout for print */
-  .print-content {
-    position: static !important;
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  /* Adjust spacing for print */
+  .pb-32, .pb-20, .pt-6 {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Ensure pinyin is legible on print */
+  rt {
+    line-height: 1 !important;
+    font-size: 0.5em !important;
+  }
+
+  /* Keep the printable title styled */
+  .print-block {
+    display: block !important;
   }
 }
