@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# Jibiji PWA (记笔记)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium Progressive Web App (PWA) designed for language learners. Jibiji automatically handles pronunciation guides for Chinese (Pinyin) and Japanese, making it effortless to create and review language study notes.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can access the live application at: **[https://jibiji.netlify.app](https://jibiji.netlify.app)**
 
-## React Compiler
+## 📱 How to Use as an App (Add to Home Screen)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To get the full native app experience, you can add Jibiji directly to your phone's home screen.
 
-## Expanding the ESLint configuration
+**On iPhone/iPad (Safari):**
+1. Open [jibiji.netlify.app](https://jibiji.netlify.app) in **Safari**.
+2. Tap the **Share** button (the square with an arrow pointing up at the bottom of the screen).
+3. Scroll down and tap **Add to Home Screen**.
+4. Tap **Add** in the top right corner.
+5. You can now launch Jibiji directly from your home screen just like a regular app!
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Key Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🌐 Language Learning Focus
+- **Automatic Pinyin**: Seamlessly adds Pinyin with proper tone marks for Chinese characters using `pinyin-pro`.
+- **Japanese Support**: Automatically converts Hiragana and Katakana to Romaji using `wanakana`.
+- **Ruby Text Rendering**: Beautifully formatted pronunciation guides displayed above characters for better readability.
+- **Smart Parsing**: Distinguishes between Chinese and Japanese text automatically to provide the correct pronunciation guide.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 📝 Smart Editor & Preview
+- **Custom Markdown Syntax**:
+  - `#` for Headers, `##` for Sub-headers.
+  - `*text*` for **Bold** text.
+  - `/red(text)` for highlighting critical parts in red.
+- **Pinning System**: Keep your most important memos at the top.
+- **PDF Export**: Optimized print layout for saving your notes as high-quality PDFs.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🎨 Design System
+- **Premium Aesthetics**: Clean and modern interface designed for an optimal user experience.
+- **Glassmorphism**: Subtle blur and transparency effects for a modern, OS-integrated feel.
+- **Dark Mode**: Fully supports native dark mode with adaptive color schemes.
+- **Micro-animations**: Smooth transitions and hover effects for a responsive user experience.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ⚡ Progressive Web App (PWA)
+- **Installable**: Can be added to your home screen on mobile and desktop devices.
+- **Offline Capability**: Access your memos anytime, even without an internet connection.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🛡️ Privacy & Storage (No Database)
+- **Local-Only Persistence**: Jibiji does **not** use a centralized database. All your memos are stored locally in your browser's `localStorage` using [Zustand persistence](https://github.com/pmndrs/zustand).
+- **Privacy First**: Your notes never leave your device. This ensures maximum privacy and allows the app to work lightning-fast without a server connection.
+- **Auto-Save Mechanism**: Memos are automatically saved as you type. Each memo is assigned a unique ID (UUID) and remains persistent across sessions unless you manually clear your browser data.
+- **Export for Backup**: Use the PDF/Share feature to save permanent records of your notes outside the browser.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 🛠 Tech Stack
+
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) (with persistence)
+- **Language Utils**: `pinyin-pro`, `wanakana`
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Deployment**: [Netlify](https://www.netlify.com/)
+
+## 🚀 Getting Started (Local Development)
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/W00SE0K/jibiji-pwa.git
+   cd jibiji-pwa
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+## 📄 License
+
+This project is public and open for anyone to use.
